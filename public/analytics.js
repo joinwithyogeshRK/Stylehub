@@ -69,6 +69,7 @@
   }
 
   sendEvent("page_view");
+  
 
   let lastPath = location.pathname;
   const observer = new MutationObserver(() => {
