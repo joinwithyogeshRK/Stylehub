@@ -42,8 +42,6 @@
     return session.id;
   }
 
-
-
   function getDevice() {
     const ua = navigator.userAgent.toLowerCase();
     if (/mobile/.test(ua)) return "mobile";
@@ -62,14 +60,13 @@
         source: getSource(),
         device: getDevice(),
         session_id: getOrCreateSessionId(),
-        visitor_id : getOrCreateVisitorId(),
+        visitor_id: getOrCreateVisitorId(),
         userAgent: navigator.userAgent,
       }),
     });
   }
 
   sendEvent("page_view");
-  
 
   let lastPath = location.pathname;
   const observer = new MutationObserver(() => {
