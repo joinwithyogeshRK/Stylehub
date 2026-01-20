@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
+import { SEO } from "@/components/SEO";
 import { 
   ArrowRight, 
   Star, 
@@ -149,6 +150,13 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Home"
+        description="Create stunning websites in minutes with our AI-powered website builder. No coding required!"
+        keywords="website builder, AI websites, no code, web design, create website"
+        url="https://yourwebsite.com"
+      />
+
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 py-20 lg:py-32">
         <div className="container mx-auto px-4">
@@ -158,10 +166,15 @@ const Home = () => {
               <span className="text-primary block">Perfect Style</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Explore our curated collection of premium fashion pieces designed to elevate your wardrobe and express your unique personality.
+              Explore our curated collection of premium fashion pieces designed
+              to elevate your wardrobe and express your unique personality.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90" onClick={() => navigate('/shop')}>
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary/90"
+                onClick={() => navigate("/shop")}
+              >
                 Shop Now
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -181,10 +194,11 @@ const Home = () => {
               Shop by Category
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Discover our diverse range of fashion categories, each carefully curated to meet your style needs.
+              Discover our diverse range of fashion categories, each carefully
+              curated to meet your style needs.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {categories.map((category) => (
               <Link
@@ -234,10 +248,15 @@ const Home = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredProducts.map((product) => {
-              const primaryImage = product.product_images.find(img => img.is_primary) || product.product_images[0];
-              
+              const primaryImage =
+                product.product_images.find((img) => img.is_primary) ||
+                product.product_images[0];
+
               return (
-                <Card key={product.id} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
+                <Card
+                  key={product.id}
+                  className="group overflow-hidden hover:shadow-lg transition-all duration-300"
+                >
                   <CardContent className="p-0">
                     <div className="relative aspect-square overflow-hidden">
                       {primaryImage ? (
@@ -253,18 +272,23 @@ const Home = () => {
                           </div>
                         </div>
                       )}
-                      
+
                       <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Button size="icon" variant="secondary" className="h-8 w-8">
+                        <Button
+                          size="icon"
+                          variant="secondary"
+                          className="h-8 w-8"
+                        >
                           <Heart className="h-4 w-4" />
                         </Button>
                       </div>
 
-                      {product.compare_at_price && product.compare_at_price > product.price && (
-                        <Badge className="absolute top-2 left-2 bg-destructive">
-                          Sale
-                        </Badge>
-                      )}
+                      {product.compare_at_price &&
+                        product.compare_at_price > product.price && (
+                          <Badge className="absolute top-2 left-2 bg-destructive">
+                            Sale
+                          </Badge>
+                        )}
                     </div>
 
                     <div className="p-4">
@@ -275,27 +299,28 @@ const Home = () => {
                           </Badge>
                         )}
                       </div>
-                      
+
                       <Link to={`/product/${product.slug}`}>
                         <h3 className="font-semibold mb-2 hover:text-primary transition-colors line-clamp-2">
                           {product.name}
                         </h3>
                       </Link>
-                      
+
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center space-x-2">
                           <span className="font-bold text-lg">
                             ${product.price.toFixed(2)}
                           </span>
-                          {product.compare_at_price && product.compare_at_price > product.price && (
-                            <span className="text-sm text-muted-foreground line-through">
-                              ${product.compare_at_price.toFixed(2)}
-                            </span>
-                          )}
+                          {product.compare_at_price &&
+                            product.compare_at_price > product.price && (
+                              <span className="text-sm text-muted-foreground line-through">
+                                ${product.compare_at_price.toFixed(2)}
+                              </span>
+                            )}
                         </div>
                       </div>
 
-                      <Button 
+                      <Button
                         className="w-full bg-primary hover:bg-primary/90"
                         onClick={() => handleAddToCart(product.id)}
                       >
@@ -310,7 +335,11 @@ const Home = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button size="lg" variant="outline" onClick={() => navigate('/shop')}>
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={() => navigate("/shop")}
+            >
               View All Products
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
@@ -328,27 +357,30 @@ const Home = () => {
               </div>
               <h3 className="font-semibold text-lg mb-2">Free Shipping</h3>
               <p className="text-muted-foreground">
-                Free shipping on all orders over $50. Fast and reliable delivery worldwide.
+                Free shipping on all orders over $50. Fast and reliable delivery
+                worldwide.
               </p>
             </div>
-            
+
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="h-8 w-8 text-primary" />
               </div>
               <h3 className="font-semibold text-lg mb-2">Secure Payment</h3>
               <p className="text-muted-foreground">
-                Your payment information is processed securely with industry-standard encryption.
+                Your payment information is processed securely with
+                industry-standard encryption.
               </p>
             </div>
-            
+
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <RotateCcw className="h-8 w-8 text-primary" />
               </div>
               <h3 className="font-semibold text-lg mb-2">Easy Returns</h3>
               <p className="text-muted-foreground">
-                Not satisfied? Return your items within 30 days for a full refund.
+                Not satisfied? Return your items within 30 days for a full
+                refund.
               </p>
             </div>
           </div>
@@ -363,10 +395,17 @@ const Home = () => {
               About StyleHub
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Founded with a passion for fashion and a commitment to quality, StyleHub has been your trusted partner in style for over a decade. We believe that great fashion should be accessible to everyone, which is why we carefully curate our collections to offer the perfect blend of contemporary trends and timeless classics.
+              Founded with a passion for fashion and a commitment to quality,
+              StyleHub has been your trusted partner in style for over a decade.
+              We believe that great fashion should be accessible to everyone,
+              which is why we carefully curate our collections to offer the
+              perfect blend of contemporary trends and timeless classics.
             </p>
             <p className="text-lg text-muted-foreground mb-8">
-              Our team of fashion experts travels the world to bring you the finest materials, the latest designs, and the most comfortable fits. From casual everyday wear to elegant evening attire, we have something for every occasion and every style preference.
+              Our team of fashion experts travels the world to bring you the
+              finest materials, the latest designs, and the most comfortable
+              fits. From casual everyday wear to elegant evening attire, we have
+              something for every occasion and every style preference.
             </p>
             <Button size="lg" variant="outline">
               Learn More About Us
@@ -384,7 +423,8 @@ const Home = () => {
                 What Our Customers Say
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Don't just take our word for it. Here's what our satisfied customers have to say about their StyleHub experience.
+                Don't just take our word for it. Here's what our satisfied
+                customers have to say about their StyleHub experience.
               </p>
             </div>
 
@@ -395,26 +435,26 @@ const Home = () => {
                     <div className="flex items-center mb-4">
                       {renderStars(review.rating)}
                     </div>
-                    
+
                     {review.title && (
                       <h4 className="font-semibold mb-2">{review.title}</h4>
                     )}
-                    
+
                     {review.comment && (
                       <p className="text-muted-foreground mb-4 line-clamp-3">
                         "{review.comment}"
                       </p>
                     )}
-                    
+
                     <div className="flex items-center">
                       <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
                         <span className="text-sm font-semibold text-primary">
-                          {review.profiles?.full_name?.charAt(0) || 'U'}
+                          {review.profiles?.full_name?.charAt(0) || "U"}
                         </span>
                       </div>
                       <div>
                         <p className="font-semibold text-sm">
-                          {review.profiles?.full_name || 'Anonymous'}
+                          {review.profiles?.full_name || "Anonymous"}
                         </p>
                         {review.is_verified_purchase && (
                           <Badge variant="secondary" className="text-xs">
@@ -440,7 +480,8 @@ const Home = () => {
                 Get in Touch
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Have questions about our products or need styling advice? We'd love to hear from you.
+                Have questions about our products or need styling advice? We'd
+                love to hear from you.
               </p>
             </div>
 
@@ -453,7 +494,12 @@ const Home = () => {
                       <Input
                         placeholder="Your Name"
                         value={contactForm.name}
-                        onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
+                        onChange={(e) =>
+                          setContactForm((prev) => ({
+                            ...prev,
+                            name: e.target.value,
+                          }))
+                        }
                         required
                       />
                     </div>
@@ -462,7 +508,12 @@ const Home = () => {
                         type="email"
                         placeholder="Your Email"
                         value={contactForm.email}
-                        onChange={(e) => setContactForm(prev => ({ ...prev, email: e.target.value }))}
+                        onChange={(e) =>
+                          setContactForm((prev) => ({
+                            ...prev,
+                            email: e.target.value,
+                          }))
+                        }
                         required
                       />
                     </div>
@@ -471,16 +522,21 @@ const Home = () => {
                         placeholder="Your Message"
                         rows={5}
                         value={contactForm.message}
-                        onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
+                        onChange={(e) =>
+                          setContactForm((prev) => ({
+                            ...prev,
+                            message: e.target.value,
+                          }))
+                        }
                         required
                       />
                     </div>
-                    <Button 
-                      type="submit" 
+                    <Button
+                      type="submit"
                       className="w-full bg-primary hover:bg-primary/90"
                       disabled={contactLoading}
                     >
-                      {contactLoading ? 'Sending...' : 'Send Message'}
+                      {contactLoading ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
                 </CardContent>
@@ -489,7 +545,9 @@ const Home = () => {
               {/* Contact Info */}
               <div className="space-y-8">
                 <div>
-                  <h3 className="font-semibold text-lg mb-4">Contact Information</h3>
+                  <h3 className="font-semibold text-lg mb-4">
+                    Contact Information
+                  </h3>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
                       <MapPin className="h-5 w-5 text-primary" />

@@ -14,7 +14,7 @@ import { Slider } from '@/components/ui/slider';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { toast } from 'sonner';
 import { ShoppingCart, Heart, ListFilter as Filter, Search, Grid3x3 as Grid3X3, List, SlidersHorizontal } from 'lucide-react';
-
+import { SEO } from "@/components/SEO";
 type Product = Database['public']['Tables']['products']['Row'] & {
   product_images: Database['public']['Tables']['product_images']['Row'][];
   categories: Database['public']['Tables']['categories']['Row'] | null;
@@ -305,6 +305,13 @@ const Shop = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <SEO
+        title="Shop"
+        description="Browse our collection of premium products. Find everything you need with fast shipping and great prices."
+        keywords="shop, online shopping, products, buy online, e-commerce"
+        url="https://yourwebsite.com/shop"
+      />
+
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Desktop Filters Sidebar */}
         <div className="hidden lg:block w-64 flex-shrink-0">
@@ -326,13 +333,16 @@ const Shop = () => {
                 Shop All Products
               </h1>
               <p className="text-muted-foreground mt-1">
-                {loading ? 'Loading...' : `${products.length} products found`}
+                {loading ? "Loading..." : `${products.length} products found`}
               </p>
             </div>
 
             <div className="flex items-center gap-4">
               {/* Mobile Filters */}
-              <Sheet open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
+              <Sheet
+                open={mobileFiltersOpen}
+                onOpenChange={setMobileFiltersOpen}
+              >
                 <SheetTrigger asChild>
                   <Button variant="outline" className="lg:hidden">
                     <Filter className="mr-2 h-4 w-4" />
@@ -363,16 +373,16 @@ const Shop = () => {
               {/* View Mode */}
               <div className="hidden sm:flex border rounded-lg p-1">
                 <Button
-                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
+                  variant={viewMode === "grid" ? "default" : "ghost"}
                   size="sm"
-                  onClick={() => setViewMode('grid')}
+                  onClick={() => setViewMode("grid")}
                 >
                   <Grid3X3 className="h-4 w-4" />
                 </Button>
                 <Button
-                  variant={viewMode === 'list' ? 'default' : 'ghost'}
+                  variant={viewMode === "list" ? "default" : "ghost"}
                   size="sm"
-                  onClick={() => setViewMode('list')}
+                  onClick={() => setViewMode("list")}
                 >
                   <List className="h-4 w-4" />
                 </Button>
@@ -398,28 +408,43 @@ const Shop = () => {
             </div>
           ) : products.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-muted-foreground text-lg">No products found matching your criteria.</p>
+              <p className="text-muted-foreground text-lg">
+                No products found matching your criteria.
+              </p>
               <Button onClick={clearFilters} className="mt-4">
                 Clear Filters
               </Button>
             </div>
           ) : (
-            <div className={`grid gap-6 ${
-              viewMode === 'grid'
-                ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-                : 'grid-cols-1'
-            }`}>
+            <div
+              className={`grid gap-6 ${
+                viewMode === "grid"
+                  ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                  : "grid-cols-1"
+              }`}
+            >
               {products.map((product) => {
-                const primaryImage = product.product_images.find((img) => img.is_primary) || product.product_images[0];
+                const primaryImage =
+                  product.product_images.find((img) => img.is_primary) ||
+                  product.product_images[0];
 
                 return (
-                  <Card key={product.id} className={`group overflow-hidden hover:shadow-lg transition-all duration-300 ${
-                    viewMode === 'list' ? 'flex' : ''
-                  }`}>
-                    <CardContent className={`p-0 ${viewMode === 'list' ? 'flex w-full' : ''}`}>
-                      <div className={`relative overflow-hidden ${
-                        viewMode === 'list' ? 'w-48 flex-shrink-0' : 'aspect-square'
-                      }`}>
+                  <Card
+                    key={product.id}
+                    className={`group overflow-hidden hover:shadow-lg transition-all duration-300 ${
+                      viewMode === "list" ? "flex" : ""
+                    }`}
+                  >
+                    <CardContent
+                      className={`p-0 ${viewMode === "list" ? "flex w-full" : ""}`}
+                    >
+                      <div
+                        className={`relative overflow-hidden ${
+                          viewMode === "list"
+                            ? "w-48 flex-shrink-0"
+                            : "aspect-square"
+                        }`}
+                      >
                         {primaryImage ? (
                           <img
                             src={primaryImage.image_url}
@@ -433,21 +458,28 @@ const Shop = () => {
                             </div>
                           </div>
                         )}
-                        
+
                         <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <Button size="icon" variant="secondary" className="h-8 w-8">
+                          <Button
+                            size="icon"
+                            variant="secondary"
+                            className="h-8 w-8"
+                          >
                             <Heart className="h-4 w-4" />
                           </Button>
                         </div>
 
-                        {product.compare_at_price && product.compare_at_price > product.price && (
-                          <Badge className="absolute top-2 left-2 bg-destructive">
-                            Sale
-                          </Badge>
-                        )}
+                        {product.compare_at_price &&
+                          product.compare_at_price > product.price && (
+                            <Badge className="absolute top-2 left-2 bg-destructive">
+                              Sale
+                            </Badge>
+                          )}
                       </div>
 
-                      <div className={`p-4 ${viewMode === 'list' ? 'flex-1 flex flex-col justify-between' : ''}`}>
+                      <div
+                        className={`p-4 ${viewMode === "list" ? "flex-1 flex flex-col justify-between" : ""}`}
+                      >
                         <div>
                           <div className="mb-2">
                             {product.categories && (
@@ -456,31 +488,32 @@ const Shop = () => {
                               </Badge>
                             )}
                           </div>
-                          
+
                           <Link to={`/product/${product.slug}`}>
                             <h3 className="font-semibold mb-2 hover:text-primary transition-colors line-clamp-2">
                               {product.name}
                             </h3>
                           </Link>
-                          
-                          {viewMode === 'list' && product.description && (
+
+                          {viewMode === "list" && product.description && (
                             <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
                               {product.description}
                             </p>
                           )}
                         </div>
-                        
+
                         <div>
                           <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center space-x-2">
                               <span className="font-bold text-lg">
                                 ${product.price.toFixed(2)}
                               </span>
-                              {product.compare_at_price && product.compare_at_price > product.price && (
-                                <span className="text-sm text-muted-foreground line-through">
-                                  ${product.compare_at_price.toFixed(2)}
-                                </span>
-                              )}
+                              {product.compare_at_price &&
+                                product.compare_at_price > product.price && (
+                                  <span className="text-sm text-muted-foreground line-through">
+                                    ${product.compare_at_price.toFixed(2)}
+                                  </span>
+                                )}
                             </div>
                           </div>
 

@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { toast } from 'sonner';
 import { User, Mail, Phone, Camera } from 'lucide-react';
+import { SEO } from "@/components/SEO";
 
 const Profile = () => {
   const { user, profile } = useAuth();
@@ -116,10 +117,19 @@ const Profile = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <SEO
+        title="My Profile"
+        description="Manage your account settings, orders, and personal information."
+        keywords="profile, account settings, my account, user profile"
+        url="https://yourwebsite.com/profile"
+      />
+
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="font-heading text-3xl font-bold mb-2">Profile Settings</h1>
+          <h1 className="font-heading text-3xl font-bold mb-2">
+            Profile Settings
+          </h1>
           <p className="text-muted-foreground">
             Manage your account information and preferences
           </p>
@@ -134,18 +144,23 @@ const Profile = () => {
             <CardContent>
               <div className="flex items-center space-x-6">
                 <Avatar className="h-24 w-24">
-                  <AvatarImage src={formData.avatar_url} alt="Profile picture" />
+                  <AvatarImage
+                    src={formData.avatar_url}
+                    alt="Profile picture"
+                  />
                   <AvatarFallback className="text-2xl">
-                    {profile.full_name?.charAt(0) || user.email?.charAt(0) || 'U'}
+                    {profile.full_name?.charAt(0) ||
+                      user.email?.charAt(0) ||
+                      "U"}
                   </AvatarFallback>
                 </Avatar>
-                
+
                 <div>
                   <Label htmlFor="avatar-upload" className="cursor-pointer">
                     <Button variant="outline" disabled={loading} asChild>
                       <span>
                         <Camera className="mr-2 h-4 w-4" />
-                        {loading ? 'Uploading...' : 'Change Avatar'}
+                        {loading ? "Uploading..." : "Change Avatar"}
                       </span>
                     </Button>
                   </Label>
@@ -180,7 +195,12 @@ const Profile = () => {
                       type="text"
                       placeholder="Enter your full name"
                       value={formData.full_name}
-                      onChange={(e) => setFormData(prev => ({ ...prev, full_name: e.target.value }))}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          full_name: e.target.value,
+                        }))
+                      }
                       className="pl-10"
                     />
                   </div>
@@ -212,18 +232,23 @@ const Profile = () => {
                       type="tel"
                       placeholder="Enter your phone number"
                       value={formData.phone}
-                      onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          phone: e.target.value,
+                        }))
+                      }
                       className="pl-10"
                     />
                   </div>
                 </div>
 
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   className="w-full bg-primary hover:bg-primary/90"
                   disabled={loading}
                 >
-                  {loading ? 'Updating...' : 'Update Profile'}
+                  {loading ? "Updating..." : "Update Profile"}
                 </Button>
               </form>
             </CardContent>
@@ -237,14 +262,18 @@ const Profile = () => {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label className="text-sm font-medium text-muted-foreground">Account Created</Label>
+                  <Label className="text-sm font-medium text-muted-foreground">
+                    Account Created
+                  </Label>
                   <p className="font-semibold">
                     {new Date(profile.created_at).toLocaleDateString()}
                   </p>
                 </div>
-                
+
                 <div>
-                  <Label className="text-sm font-medium text-muted-foreground">Last Updated</Label>
+                  <Label className="text-sm font-medium text-muted-foreground">
+                    Last Updated
+                  </Label>
                   <p className="font-semibold">
                     {new Date(profile.updated_at).toLocaleDateString()}
                   </p>

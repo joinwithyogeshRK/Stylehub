@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
+import { SEO } from '@/components/SEO';
 import { 
   ShoppingCart, 
   Plus, 
@@ -100,6 +101,13 @@ const Cart = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <SEO
+        title="Shopping Cart"
+        description="Review your shopping cart and proceed to checkout. Secure payment, fast delivery."
+        keywords="shopping cart, checkout, buy now, cart items"
+        url="https://yourwebsite.com/cart"
+      />
+
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -107,10 +115,10 @@ const Cart = () => {
             Shopping Cart
           </h1>
           <p className="text-muted-foreground">
-            {cartCount} item{cartCount !== 1 ? 's' : ''} in your cart
+            {cartCount} item{cartCount !== 1 ? "s" : ""} in your cart
           </p>
         </div>
-        <Button variant="ghost" onClick={() => navigate('/shop')}>
+        <Button variant="ghost" onClick={() => navigate("/shop")}>
           <ArrowLeft className="mr-2 h-4 w-4" />
           Continue Shopping
         </Button>
@@ -120,8 +128,10 @@ const Cart = () => {
         {/* Cart Items */}
         <div className="lg:col-span-2 space-y-4">
           {cartItems.map((item) => {
-            const primaryImage = item.products.product_images.find(img => img.is_primary) || item.products.product_images[0];
-            
+            const primaryImage =
+              item.products.product_images.find((img) => img.is_primary) ||
+              item.products.product_images[0];
+
             return (
               <Card key={item.id}>
                 <CardContent className="p-6">
@@ -180,7 +190,9 @@ const Cart = () => {
                             variant="outline"
                             size="icon"
                             className="h-8 w-8"
-                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            onClick={() =>
+                              updateQuantity(item.id, item.quantity - 1)
+                            }
                             disabled={item.quantity <= 1}
                           >
                             <Minus className="h-3 w-3" />
@@ -192,7 +204,9 @@ const Cart = () => {
                             variant="outline"
                             size="icon"
                             className="h-8 w-8"
-                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            onClick={() =>
+                              updateQuantity(item.id, item.quantity + 1)
+                            }
                           >
                             <Plus className="h-3 w-3" />
                           </Button>
@@ -235,12 +249,12 @@ const Cart = () => {
                 <span>Subtotal</span>
                 <span>${subtotal.toFixed(2)}</span>
               </div>
-              
+
               <div className="flex justify-between">
                 <span>Tax</span>
                 <span>${tax.toFixed(2)}</span>
               </div>
-              
+
               <div className="flex justify-between">
                 <span>Shipping</span>
                 <span>
@@ -251,29 +265,29 @@ const Cart = () => {
                   )}
                 </span>
               </div>
-              
+
               {subtotal < 50 && (
                 <p className="text-sm text-muted-foreground">
                   Add ${(50 - subtotal).toFixed(2)} more for free shipping!
                 </p>
               )}
-              
+
               <Separator />
-              
+
               <div className="flex justify-between font-semibold text-lg">
                 <span>Total</span>
                 <span>${total.toFixed(2)}</span>
               </div>
-              
-              <Button 
-                className="w-full bg-primary hover:bg-primary/90" 
+
+              <Button
+                className="w-full bg-primary hover:bg-primary/90"
                 size="lg"
                 onClick={handleCheckout}
               >
                 <CreditCard className="mr-2 h-5 w-5" />
                 Proceed to Checkout
               </Button>
-              
+
               <div className="text-center">
                 <p className="text-xs text-muted-foreground">
                   Secure checkout powered by industry-standard encryption
