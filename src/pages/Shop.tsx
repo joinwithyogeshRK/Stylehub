@@ -306,7 +306,7 @@ const Shop = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <SEO
-        title="Shop"
+        title="Shop - StyleHub"
         description="Browse our collection of premium products. Find everything you need with fast shipping and great prices."
         keywords="shop, online shopping, products, buy online, e-commerce"
         url="https://yourwebsite.com/shop"
