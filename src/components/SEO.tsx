@@ -17,7 +17,7 @@ export const SEO = ({
   url = "https://yourwebsite.com",
   type = "website",
 }: SEOProps) => {
-  const fullTitle = `${title} | Your Website Name`;
+  const fullTitle = `${title} | StyleHub`;
 
   return (
     <Helmet>

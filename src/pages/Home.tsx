@@ -151,7 +151,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Home"
+        title="StyleHub - Discover Your Perfect Style"
         description="Create stunning websites in minutes with our AI-powered website builder. No coding required!"
         keywords="website builder, AI websites, no code, web design, create website"
         url="https://yourwebsite.com"
